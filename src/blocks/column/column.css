@@ -1,0 +1,46 @@
+.column {
+  width: 350px;
+  height: 500px;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 2px solid ;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 5px #E3DDFE;
+
+  color: #B9B1FF;
+}
+.column_dragging {
+  opacity: .5;
+}
+.column__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+.column__header-container {
+  display: flex;
+  gap: 10px;
+}
+.column__tasks-number {
+  border-bottom: 2px solid ;
+}
+.column__input,
+.column__input:focus {
+  border: 1px solid #4A4AFF;
+  color: #4A4AFF;
+  outline: none;
+  border-radius: 2px;
+}
+.column__content {
+  flex-grow: 1;
+  overflow-y: auto;
+
+  padding-right: 7px;
+
+  overflow-x: hidden;
+}

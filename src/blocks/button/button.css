@@ -1,0 +1,25 @@
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  width: max-content;
+  height: min-content;
+  color: #B9B1FF;
+}
+.button_add {
+  padding: 10px 30px;
+  border: 2px solid #B9B1FF;
+  border-radius: 5px;
+  width: auto;
+  min-width: max-content;
+}
+.button_delete {
+  padding: 0;
+}
+.button:hover {
+  color:  #4A4AFF;
+}
+.button_add:hover {
+  border: 2px solid #4A4AFF;
+}
