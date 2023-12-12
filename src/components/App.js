@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import '../blocks/app/app.css';
 import Button from './Button';
 import Column from './Column';
+import Footer from './Footer';
 import { DndContext, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
 import {SortableContext, arrayMove} from '@dnd-kit/sortable';
 
@@ -168,6 +169,8 @@ function App() {
       {/* patch */}
      {activeColumn ? <></> : <></>} 
      {/* patch end */}
+
+     <Footer />
     </DndContext>
   );
 }
