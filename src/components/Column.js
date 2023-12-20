@@ -5,7 +5,12 @@ import Button from './Button';
 import { useMemo, useState } from 'react';
 import Task from './Task';
 
-export default function Column({id, name, handleClick, updateColumnName, handleAddTask, tasks, handleDeleteTask, updateTask}) {
+import { selectUser } from '../context/user';
+import { useSelector } from 'react-redux';
+
+export default function Column({columnID, name, handleClick, updateColumnName, handleAddTask, tasks, handleDeleteTask, updateTask}) {
+
+  let {id}= useSelector(selectUser); //initially check isAnyUserLogIN
 
   const [editMode, setEditMode] = useState(false);
   const [input, setInput] = useState(name);
@@ -15,11 +20,11 @@ export default function Column({id, name, handleClick, updateColumnName, handleA
   }, [tasks])
   
   const {setNodeRef, attributes, listeners, transform, transition} = useSortable({
-    id:id,
+    id:columnID,
     data: {
       type: 'column',
       name: name,
-      id:id,
+      id:columnID,
     },
     // disabled:editMode,
   });
@@ -51,7 +56,7 @@ export default function Column({id, name, handleClick, updateColumnName, handleA
         <Button
           handleClick={handleClick}
           type='delete'
-          id={id}
+          columnORtaskID={columnID}
         />
       </div>
       <div className='column__content'>
@@ -68,7 +73,7 @@ export default function Column({id, name, handleClick, updateColumnName, handleA
       content='Add task'
       handleClick={handleAddTask}
       type='add'
-      id={id} //column id
+      columnORtaskID={columnID} //column id
       />
     </div>
   )
@@ -81,7 +86,7 @@ export default function Column({id, name, handleClick, updateColumnName, handleA
   }
   function handleKeyDown(e) {
     if (e.key !== 'Enter') return
-    updateColumnName({input, id});
+    updateColumnName({userID:id, input, id:columnID});
     setEditMode(false)
   }
 }

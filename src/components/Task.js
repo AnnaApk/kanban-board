@@ -4,8 +4,15 @@ import Button from "./Button";
 import '../blocks/task/task.css';
 import { useState } from "react";
 
+import { selectUser } from '../context/user';
+import { useSelector } from 'react-redux';
+
 export default function Task({task, handleDeleteTask, updateTask}) {
-  const {content, id} = task;
+
+  let {id}= useSelector(selectUser); //initially check isAnyUserLogIN
+
+  const {idColumn,content} = task;
+  const taskID = task.id;
 
   const [editModeTask, setEditModeTask] = useState(false);
   const [ isMouseOver, setIsMouseOver] = useState(false);
@@ -20,7 +27,7 @@ export default function Task({task, handleDeleteTask, updateTask}) {
   }
 
   const {setNodeRef, attributes, listeners, transform, transition} = useSortable({
-    id:id,
+    id:taskID,
     data: {
       type: 'task',
       task, /// {idColumn, id, content}
@@ -55,7 +62,7 @@ export default function Task({task, handleDeleteTask, updateTask}) {
       value={input}
       onKeyDown={(e) => {
         if (e.key === 'Enter' && e.shiftKey) {
-        updateTask({input, id});
+        updateTask({input, id:taskID, userID:id, columnID:idColumn});    ///updateTask = ({userID,id, input, columnID})
         setEditModeTask(false)
         }
         return
@@ -65,7 +72,7 @@ export default function Task({task, handleDeleteTask, updateTask}) {
 
       { isMouseOver && <Button 
         type='delete' 
-        id={id} 
+        columnORtaskID={taskID} 
         handleClick={handleDeleteTask}
       />}
     </div>

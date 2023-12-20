@@ -3,7 +3,7 @@
 It's a desktop app. 
 https://kanban-board-ashen.vercel.app/
 
-*__Stack__: React, CSS, JS, DND-kit*
+*__Stack__: React, CSS, JS, Redux, Firebase, DND-kit*
 
 ## Already made functionality:
 
